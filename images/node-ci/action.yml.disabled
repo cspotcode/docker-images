@@ -1,3 +1,4 @@
+# DISABLED because we do not need an action configuration; just want the docker image
 name: 'Node CI Image'
 # description: ''
 inputs:
