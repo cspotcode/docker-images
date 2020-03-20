@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:    
+    - 'master'
+jobs:
+  build_all:
+    name: build_all
+    runs-on: ubuntu-latest
+    steps:
+      - name: git clone
+        uses: actions/checkout@v2
+      - name: build
+        uses: cspotcode/docker-images/images/node-ci@master
+        with:
+          args: .github/workflows/continuous.sh
