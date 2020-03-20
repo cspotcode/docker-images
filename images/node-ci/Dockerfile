@@ -13,18 +13,17 @@ RUN apt-get install -y git
 RUN apt-get install -y docker
 RUN apt-get install -y yarn
 
-COPY --chown=root entrypoint.sh /entrypoint.sh
-
 RUN adduser --disabled-password build && usermod -aG sudo build && echo 'build ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
-
-ENTRYPOINT ["/entrypoint.sh"]
 
 USER build
 WORKDIR /home/build
 
-RUN echo 'export N_PREFIX=$HOME/.n' >> ~/.bashrc
-RUN echo 'export PATH="$N_PREFIX/bin:$PATH"' >> ~/.bashrc
+RUN echo 'export N_PREFIX="$HOME/.n"' >> ~/.profile
+RUN echo 'export PATH="$N_PREFIX/bin:$PATH"' >> ~/.profile
 RUN mkdir -p ~/.n/bin && curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o ~/.n/bin/n && chmod +x ~/.n/bin/n && N_PREFIX="$HOME/.n" ~/.n/bin/n lts
 # Now node and npm are available
 
-CMD ["bash", "-i"]
+COPY --chown=root entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+# Run interactive shell by default, which is nice for local development
+CMD ["bash"]
