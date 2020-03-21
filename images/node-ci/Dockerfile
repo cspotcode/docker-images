@@ -27,6 +27,9 @@ RUN apt-get update && \
     apt-get install -y docker-ce docker-ce-cli containerd.io
 
 RUN adduser --disabled-password build && usermod -aG sudo build && echo 'build ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+RUN groupadd -g 115 docker2
+RUN usermod -a -G docker build
+RUN usermod -a -G docker2 build
 
 USER build
 WORKDIR /home/build
