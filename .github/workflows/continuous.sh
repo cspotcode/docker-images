@@ -4,6 +4,9 @@ shopt -s inherit_errexit
 
 set -x
 
+sudo ls -al /var/run/docker.sock
+id
+
 for dir in $(ls images) ; do
     pushd images/$dir
     img=docker.pkg.github.com/cspotcode/docker-images/$dir:latest
