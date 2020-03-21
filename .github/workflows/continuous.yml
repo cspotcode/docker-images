@@ -13,3 +13,5 @@ jobs:
         uses: cspotcode/docker-images/images/node-ci@master
         with:
           args: .github/workflows/continuous.sh
+        env:
+          GITHUB_TOKEN: {{ github.token }}
