@@ -5,6 +5,7 @@ shopt -s inherit_errexit
 set -x
 
 sudo ls -al /var/run/docker.sock
+sudo ls -al "$HOME"
 id
 
 for dir in $(ls images) ; do
