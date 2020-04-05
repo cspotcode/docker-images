@@ -10,7 +10,7 @@ jobs:
       - name: git clone
         uses: actions/checkout@v2
       - name: build
-        uses: docker.pkg.github.com/cspotcode/docker-images/node-ci:latest
+        uses: docker://docker.pkg.github.com/cspotcode/docker-images/node-ci:latest
         # uses: cspotcode/docker-images/images/node-ci@master
         with:
           args: .github/workflows/continuous.sh
