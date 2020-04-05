@@ -10,7 +10,8 @@ export HOME="$CONTAINER_HOME"
 # Using sudo for all docker stuff, because we need root to read/write the docker socket
 
 # Login to Github Packages
-sudo docker login docker.pkg.github.com --username "$GITHUB_ACTOR" --password-stdin <<< "$DOCKER_PUSH_GITHUB_TOKEN"
+sudo docker login docker.pkg.github.com --username cspotcode --password-stdin <<< "$DOCKER_PUSH_GITHUB_TOKEN"
+sudo cat /root/.docker/config.json
 
 # Perform a test push of a small image to Github Actions to verify permission
 sudo docker pull alpine
