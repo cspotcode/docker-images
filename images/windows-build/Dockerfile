@@ -41,6 +41,12 @@ RUN msiexec /i "C:\\Downloads\\cmake.msi"
 ADD https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/win64/nasm-2.14.02-win64.zip C:\\Downloads\nasm.zip
 RUN powershell.exe -NoP -NonI -Command "Expand-Archive 'C:\\Downloads\\nasm.zip' 'C:\nasm'"
 
+ADD http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-64bit.msi C:\Downloads\perl.msi
+RUN msiexec /i "C:\\Downloads\\perl.msi"
+
+ADD https://www.python.org/ftp/python/3.8.2/python-3.8.2-amd64.exe C:\Downloads\python.exe
+RUN C:\Downloads\python.exe /simple /quiet /passive /log C:\Downloads\python-installation-log.txt
+
 RUN SETX /M Path "%Path%;C:\\Nuget;C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\MSBuild\\15.0\\Bin;C:\\nasm"
 
 

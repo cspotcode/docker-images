@@ -33,6 +33,8 @@ RUN usermod -a -G docker2 build
 
 USER build
 WORKDIR /home/build
+ENV HOME=/home/build
+ENV CONTAINER_HOME=/home/build
 
 RUN echo 'export N_PREFIX="$HOME/.n"' >> ~/.profile
 RUN echo 'export PATH="$N_PREFIX/bin:$PATH"' >> ~/.profile
