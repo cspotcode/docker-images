@@ -16,5 +16,5 @@ jobs:
         with:
           args: .github/workflows/continuous.sh
         env:
-          GITHUB_TOKEN: '{{ github.token }}'
-          DOCKER_PUSH_GITHUB_TOKEN: '{{ secrets.DOCKER_PUSH_GITHUB_TOKEN }}'
+          GITHUB_TOKEN: '${{ github.token }}'
+          #DOCKER_PUSH_GITHUB_TOKEN: '${{ secrets.DOCKER_PUSH_GITHUB_TOKEN }}'
