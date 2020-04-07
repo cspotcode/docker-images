@@ -25,7 +25,7 @@ build_push() {
     # skip over windows docker images
     if [[ ! -f is-windows ]] ; then
         img="docker.pkg.github.com/cspotcode/docker-images/$dir:latest"
-        img2="docker.pkg.github.com/cspotcode/docker-images/$dir:$GITHUB_REF"
+        img2="docker.pkg.github.com/cspotcode/docker-images/$dir:${GITHUB_REF#"refs/heads/"}"
         DOCKER_BUILDKIT=1 sudo --preserve-env=DOCKER_BUILDKIT \
             docker build \
                 --cache-from="$img2" \
