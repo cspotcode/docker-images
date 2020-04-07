@@ -24,9 +24,17 @@ build_push() {
     pushd "images/$dir"
     # skip over windows docker images
     if [[ ! -f is-windows ]] ; then
-        img=docker.pkg.github.com/cspotcode/docker-images/$dir:latest
-        sudo docker build -t "$img" .
+        img="docker.pkg.github.com/cspotcode/docker-images/$dir:latest"
+        img2="docker.pkg.github.com/cspotcode/docker-images/$dir:$GITHUB_REF"
+        DOCKER_BUILDKIT=1 sudo --preserve-env=DOCKER_BUILDKIT \
+            docker build \
+                --cache-from="$img2" \
+                --build-arg BUILDKIT_INLINE_CACHE=1 \
+                -t "$img" \
+                -t "$img2" \
+                .
         sudo docker push "$img"
+        sudo docker push "$img2"
     fi
     popd
 }
